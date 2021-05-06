@@ -2,8 +2,7 @@ package zad2;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.FileNameMap;
+import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
@@ -28,7 +27,10 @@ public class Futil {
 		
 		try {
 			outFileChannel = FileChannel.open(outPath, new OpenOption[] {StandardOpenOption.CREATE, StandardOpenOption.APPEND});
-			outFileChannel.write(byteBuffer);
+			
+			PrintWriter writer = new PrintWriter(outPath.toString());
+			writer.print("");
+			writer.close();
 			
 			Files.walk(Paths.get(dirName), FileVisitOption.FOLLOW_LINKS)
 				.filter(Files::isRegularFile)

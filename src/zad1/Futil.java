@@ -22,11 +22,8 @@ public class Futil extends SimpleFileVisitor<Path>{
 	private static FileChannel outFileChannel;
 	private FileChannel inFileChannel;
 	private ByteBuffer byteBuffer;
-	private static String fileName;
-	
 	public static void processDir(String dirName, String resultFileName)
 	{
-		fileName = resultFileName;
 		outPath = Paths.get(System.getProperty("user.dir") + "/" + resultFileName);
 		
 		try {
@@ -36,7 +33,7 @@ public class Futil extends SimpleFileVisitor<Path>{
 			writer.print("");
 			writer.close();
 			
-			Path walkFileTree = Files.walkFileTree(Paths.get(dirName), new Futil());
+			Files.walkFileTree(Paths.get(dirName), new Futil());
 		} catch (IOException ex) {
 		    System.err.println(ex.getMessage());
 		}
